@@ -1,25 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Repository from './Repository'
 import { withRouter } from 'react-router-dom'
 import {showRepository} from '../../redux/reducers/allRepositoryReducer'
+import { compose } from 'redux'
 
-class RepositoryComponent extends React.Component {
-    componentDidMount() {
-      let id = this.props.match.params.id + '/' + this.props.match.params.name
-      this.props.showRepository(id)
-    }
+const RepositoryComponent = (props) => {
+    useEffect(() => {
+      let id = props.match.params.id + '/' + props.match.params.name
+      props.showRepository(id)
+    },[])
   
-    render() {
-      return (
-        <Repository itemRepository={this.props.itemRepository} />
+    return (
+        <Repository itemRepository={props.itemRepository} />
       );
-    }
   }
 
 let mapStateToProps = (state) => ({
     itemRepository: state.listRepository.itemRepository,
 })
- 
-let WithRouterUrl = withRouter(RepositoryComponent)
-export default connect(mapStateToProps, {showRepository})(WithRouterUrl)
+
+export default compose(connect(mapStateToProps, {showRepository}), withRouter)(RepositoryComponent)
