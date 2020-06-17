@@ -1,6 +1,8 @@
 import React from 'react'
 import style from './ListRepository.module.css'
 import {NavLink} from 'react-router-dom'
+import { format } from 'date-fns'
+import { ru } from 'date-fns/locale'
 
 const ListRepository = (props) => {
     let countPage = Math.ceil( props.totalCount / 10);
@@ -21,7 +23,7 @@ const ListRepository = (props) => {
             {props.list.map(item => {return <NavLink to={'repository/' + item['full_name']} key={item.id}><div className={style.item}>
                 <span>Name:{item.name}</span>
                 <span>Star:{item.stargazers_count}</span>
-                <span>Data:{item.updated_at.split('T')[0]}</span>
+                <span>Data:{format(new Date(item.updated_at), 'yyyy MM dd', { locale: ru })}</span>
                 <span>Url:{item.html_url}</span>
             </div></NavLink>})}
         </div>
