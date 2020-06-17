@@ -9,7 +9,7 @@ const initialState = {
     itemRepository: {
         name: '',
         stargazers_count: 0,
-        updated_at: '',
+        updated_at: '2020 01 01',
         language: '',
         description: '',
         owner:{
