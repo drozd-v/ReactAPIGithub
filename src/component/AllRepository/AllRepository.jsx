@@ -9,10 +9,10 @@ const AllRepository = (props) => {
 
     useEffect(() => {
         const page = parseInt(location.search.split('=')[1])
-        if(!props.list.length){
-        if (page !== props.page) props.setUserThunk(page, props.search)
-        else props.setUserThunk(props.page, props.search)
-        }
+        if(!props.list.length ){
+            if (page !== props.page) props.setUserThunk(page, props.search)
+            else props.setUserThunk(props.page, props.search)
+        } else props.setUserThunk(page, props.search)
     }, [location]) 
 
     return <div className={style.allRepository}>
