@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 const Filter = (props) => {
     const drawChange = (e) => {
-        props.drawChange(e.target.value)
+        props.action.drawChange(e.target.value)
     };
 
     const history = useHistory()

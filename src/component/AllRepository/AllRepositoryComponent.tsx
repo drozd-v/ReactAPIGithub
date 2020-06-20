@@ -1,8 +1,9 @@
 import { connect } from 'react-redux'
 import AllRepository from './AllRepository'
 import {setUserThunk} from '../../redux/reducers/allRepositoryReducer'
+import { AppStateType } from '../../redux/store'
  
-let mapStateToProps = (state) => ({
+let mapStateToProps = (state: AppStateType) => ({
     list: state.listRepository.listRepository,
     search: state.listRepository.search,
     page: state.listRepository.page,
