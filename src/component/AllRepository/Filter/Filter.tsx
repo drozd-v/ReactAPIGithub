@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { PropsType } from './FilterContainer';
 
 const Filter:React.FC<PropsType> = (props) => {
-    const[search, setSearch] = useState('')
+    const[search, setSearch] = useState(props.search)
     const drawChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(event.target.value)
     };
