@@ -2,7 +2,7 @@ import { ListRepositoryType, ItemRepositoryType } from './../reducers/allReposit
 export enum ActionType {
     SEARCH_REPOSITORY = 'SEARCH_REPOSITORY',
     SET_USER = 'SET_USER',
-    DRAW_CHANGE = 'DRAW_CHANGE',
+    SEARCH = 'SEARCH',
     TOTAL_COUNT = 'TOTAL_COUNT',
     CURRENT_PAGE = 'CURRENT_PAGE',
     SET_ITEM = 'SET_ITEM'
@@ -18,9 +18,9 @@ export type SetItemType = {
     item: ItemRepositoryType
 }
 
-export type DrawChangeType ={
-    type: ActionType.DRAW_CHANGE,
-    str: string
+export type Search = {
+    type: ActionType.SEARCH,
+    search: string
 }
 
 export type TotalCountPageType = {
@@ -33,6 +33,6 @@ export type CurrentPageChangeType = {
     currentNum: number
 }
 
-type ActionsTypes = SetUserType | SetItemType | DrawChangeType | TotalCountPageType | CurrentPageChangeType
+type ActionsTypes = SetUserType | SetItemType | Search | TotalCountPageType | CurrentPageChangeType
 
 export default ActionsTypes

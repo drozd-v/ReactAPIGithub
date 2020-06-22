@@ -5,7 +5,7 @@ import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { PropsType } from './ListRepositoryContainer'
 
-const ListRepository = (props: PropsType) => {
+const ListRepository:React.FC<PropsType> = (props) => {
     let countPage = Math.ceil( props.totalCount / 10);
     let page = [];
     if (countPage > 5){

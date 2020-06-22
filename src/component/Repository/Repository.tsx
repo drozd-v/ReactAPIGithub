@@ -2,10 +2,9 @@ import React from 'react'
 import style from './Repository.module.css'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
+import { MapStateToPropsType } from './RepositoryContainer'
 
-
-
-const Repository = (props) => {
+const Repository:React.FC<MapStateToPropsType> = (props) => {
     return <div>
         <div className={style.repository}>
             <span>Name repository:{props.itemRepository.name}</span>

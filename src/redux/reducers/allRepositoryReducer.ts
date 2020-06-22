@@ -1,4 +1,4 @@
-import ActionsTypes, {SetUserType, SetItemType, DrawChangeType, TotalCountPageType, CurrentPageChangeType, ActionType} from '../constants/actionType'
+import ActionsTypes, {SetUserType, SetItemType, Search, TotalCountPageType, CurrentPageChangeType, ActionType} from '../constants/actionType'
 import {repositoryAPI} from '../../api/api'
 import { Dispatch } from 'redux'
 
@@ -57,8 +57,8 @@ const allRepositoryReducer = (state = initialState, action: ActionsTypes): Initi
             return {...state, listRepository: action.state}
         case ActionType.SET_ITEM:
             return {...state, itemRepository: action.item}
-        case ActionType.DRAW_CHANGE:
-            return {...state, search: action.str}
+        case ActionType.SEARCH:
+            return {...state, search: action.search}
         case ActionType.TOTAL_COUNT:
             return {...state, totalCount: action.num}
         case ActionType.CURRENT_PAGE:
@@ -74,30 +74,31 @@ export const actions = {
         state
     }),
 
+    searchData: (search: string): Search => ({
+        type: ActionType.SEARCH,
+        search
+    }),
+
     setItem: (item: ItemRepositoryType): SetItemType => ({
         type: ActionType.SET_ITEM,
         item
-    }as const),
-
-    drawChange: (str: string): DrawChangeType => ({
-        type: ActionType.DRAW_CHANGE,
-        str
-    }as const),
+    }),
 
     totalCountPage: (num: number): TotalCountPageType => ({
         type: ActionType.TOTAL_COUNT,
         num
-    }as const),
+    }),
 
     currentPageChange: (currentNum: number): CurrentPageChangeType => ({
         type: ActionType.CURRENT_PAGE,
         currentNum
-    }as const),
+    }),
 }
 
 export const searchRepositoryThunk = (page: number, search: string) => (dispatch: Dispatch<ActionsTypes>) =>{
     dispatch(actions.currentPageChange(page))
-    repositoryAPI.searchUser(page, search)
+    dispatch(actions.searchData(search))
+    repositoryAPI.getUser(page, search)
     .then((res) => {dispatch(actions.setUser(res.items))
         dispatch(actions.totalCountPage(res.total_count))
     })
@@ -111,7 +112,7 @@ export const setUserThunk = (page: number, search: string) => (dispatch: Dispatc
 })
 }
 
-export const showRepository = (id: number) => (dispatch: any) => {
+export const showRepository = (id: string) => (dispatch: Dispatch<ActionsTypes>) => {
     repositoryAPI.repoUser(id)
     .then((res) => {dispatch(actions.setItem(res.items[0]))
     })

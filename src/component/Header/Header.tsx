@@ -1,11 +1,10 @@
 import React from 'react'
 import style from './Header.module.css'
-import { NavLink } from 'react-router-dom'
 
 const Header = () => {
-    return <div className={style.header}><NavLink to='/'>
+    return <div className={style.header}><a href='/'>
         <span>Github</span>
-    </NavLink>
+    </a>
     </div>
 }
 
