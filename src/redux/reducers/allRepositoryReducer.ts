@@ -6,7 +6,9 @@ export type ListRepositoryType = {
     name: string,
     stargazers_count: number,
     updated_at: string,
-    html_url: string
+    html_url: string,
+    full_name: string,
+    id: number
 }
 
 export type ItemRepositoryType = {

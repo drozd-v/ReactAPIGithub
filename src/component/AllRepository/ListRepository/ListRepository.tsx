@@ -3,8 +3,9 @@ import style from './ListRepository.module.css'
 import {NavLink} from 'react-router-dom'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
+import { PropsType } from './ListRepositoryContainer'
 
-const ListRepository = (props) => {
+const ListRepository = (props: PropsType) => {
     let countPage = Math.ceil( props.totalCount / 10);
     let page = [];
     if (countPage > 5){

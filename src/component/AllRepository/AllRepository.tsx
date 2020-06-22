@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react'
 import style from './AllRepository.module.css'
 import FilterComponent from './Filter/FilterComponent'
-import ListRepositoryComponent from './ListRepository/ListRepositoryComponent'
+import ListRepositoryContainer from './ListRepository/ListRepositoryContainer'
 import { useLocation } from 'react-router-dom'
+import { PropsType } from './AllRepositoryComponent'
 
-const AllRepository = (props) => {
+
+const AllRepository = (props: PropsType) => {
     const location = useLocation()
 
     useEffect(() => {
@@ -17,7 +19,7 @@ const AllRepository = (props) => {
 
     return <div className={style.allRepository}>
         <FilterComponent />
-        <ListRepositoryComponent setUserThunk={props.setUserThunk}/>
+        <ListRepositoryContainer />
     </div>
 }
 
